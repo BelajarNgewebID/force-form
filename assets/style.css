@@ -1,0 +1,93 @@
+/* primary color #6b5cb7 */
+/* hover color #8c10c6 */
+@font-face {
+    font-family: RobotoBold;
+    src: url(../fonts/Roboto-Bold.ttf);
+}
+@font-face {
+    font-family: RobotoLight;
+    src: url(../fonts/Roboto-Light.ttf);
+}
+@font-face {
+    font-family: RobotoReg;
+    src: url(../fonts/Roboto-Regular.ttf);
+}
+body {
+    font-family: Arial;
+    background: #f0ebf8;
+    text-align: center;
+    color: #333;
+}
+.container {
+    width: 48.5%;
+    text-align: left;
+    margin: 15px auto;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+.wrap { margin: 4%; }
+.header h1 {
+    font-family: RobotoLight;
+}
+.header .border {
+    background-color: #6b5cb7;
+    height: 10px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+.radio input[type=radio] { display: none; }
+.radio label { margin-left: 30px; }
+.container #title {
+    margin: 0;
+    font-size: 25px;
+    text-align: left;
+}
+.container p {
+    line-height: 22px;
+}
+.submit {
+    width: 48.5%;
+    text-align: left;
+    margin: 10px auto;
+}
+.submit button {
+    background-color: #6b5cb7;
+    color: #fff;
+    padding: 10px 25px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    font-family: RobotoReg;
+    font-size: 15px;
+}
+.submit span {
+    font-size: 13px;
+    color: #666;
+    position: relative;
+    top: 20px;
+}
+.submit .attribution {
+    margin-top: 55px;
+    font-size: 22px;
+    text-align: center;
+    /* font-family: RobotoBold; */
+    color: #aaa;
+}
+#question {
+    font-family: RobotoLight;
+    font-size: 20px;
+}
+
+@media (max-width: 480px) {
+    .container,.submit {
+        width: 95%;
+    }
+    .wrap { margin: 7%; }
+    .container p {
+        font-size: 15px;
+    }
+    .submit .attribution {
+        margin-top: 35px;
+    }
+}

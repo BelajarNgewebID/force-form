@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/google.css">
+    <link rel="stylesheet" href="./assets/style.css">
+    <link rel="shortcut icon" href="./assets/icon.png">
+</head>
+<body>
+
+<div class="container header">
+    <div class="border"></div>
+    <div class="wrap">
+        <h1 id="title"></h1>
+        <p id="description"></p>
+    </div>
+</div>
+<form action="action.php" method="POST">
+    <input type="hidden" name="answerPriority" id="priorityAnswer">
+    <div class="container">
+        <div class="wrap">
+            <h2 id="question"></h2>
+            <div id="answer"></div>
+        </div>
+    </div>
+    <div class="submit">
+        <button>Kirim</button>
+        <br />
+        <span>Jangan pernah mengirimkan sandi melalui Formulir.</span>
+        <div class="attribution">
+            Formulir
+        </div>
+    </div>
+</form>
+
+<script src="lib.js"></script>
+<script>
+    let priorityAnswer = {}
+
+    get('./data.json').then(res => {
+        let data = res
+        init(data)
+
+        bind('title', data.title)
+        bind('#title', data.title)
+        bind('#description', data.description)
+
+    })
+
+    function init(data) {
+        select("#question").innerHTML = data.question
+        let i = 0
+        data.answer.forEach(answer => {
+            let iPP = i++
+            if(answer.isPriority !== undefined || answer.isPriority  == "yes" || answer.isPriority == 1) {
+                priorityAnswer = answer
+                setTimeout(() => {
+                    submitForm()
+                }, data.timeOut)
+            }
+
+            // bikin formgroup
+            createEl({
+                el: 'div',
+                attributes: [
+                    ['class', 'form-group'],
+                    ['id', 'question'+iPP]
+                ],
+                parent: '#answer'
+            })
+
+            // bikin class radio
+            createEl({
+                el: 'div',
+                attributes: [
+                    ['class', 'radio'],
+                    ['id', 'radio'+iPP]
+                ],
+                parent: '#question'+iPP
+            })
+
+            // bikin label
+            createEl({
+                el: 'label',
+                attributes: [
+                    ['id', 'label'+iPP]
+                ],
+                parent: '#radio'+iPP,
+                html: '<input type="radio" name="answer" value="'+ answer.text +'" /><i class="helper"></i> ' + answer.text
+            })
+        })
+        select("#priorityAnswer").value = priorityAnswer.text
+    }
+
+    const submitForm = () => {
+        let answer = btoa(priorityAnswer.text)
+        document.location = 'action.php?a='+answer
+    }
+</script>
+
+</body>
+</html>

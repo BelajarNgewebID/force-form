@@ -1,0 +1,13 @@
+{
+    "title": "Untitled form",
+    "description": "",
+    "question": "Do you want to be my girlfriend?",
+    "answer": [
+        { 
+            "text": "Yes, I want",
+            "isPriority": 1
+        },
+        { "text": "I couldn't agree anymore" }
+    ],
+    "timeOut": 50000
+}
